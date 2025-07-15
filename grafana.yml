@@ -6,6 +6,7 @@ services:
     image: grafana/grafana:10.2.0
     environment:
       - GF_ANALYTICS_REPORTING_ENABLED=false
+    user: "root"
     volumes:
       - ./log-analyser/grafana:/var/lib/grafana
       - ./log-analyser/grafana-provisioning/dashboards/:/etc/grafana/provisioning/dashboards/

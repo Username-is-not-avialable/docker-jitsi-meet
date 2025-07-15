@@ -1,0 +1,4 @@
+2025/07/15 08:51:39 [crit] 288#288: *8 SSL_do_handshake() failed (SSL: error:0A0004E7:SSL routines::reason(1255):SSL alert number 255) while SSL handshaking, client: 172.18.0.1, server: 0.0.0.0:443
+172.18.0.1 - - [15/Jul/2025:08:51:39 +0000] "GET /manifest.json HTTP/2.0" 200 752 "https://localhost:8443/conf1" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 YaBrowser/25.2.0.0 Safari/537.36"
+172.18.0.1 - - [15/Jul/2025:08:51:39 +0000] "GET /static/pwa/icons/icon192.png HTTP/2.0" 200 31410 "https://localhost:8443/conf1" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 YaBrowser/25.2.0.0 Safari/537.36"
+172.18.0.1 - - [15/Jul/2025:08:51:39 +0000] "GET /libs/lib-jitsi-meet.e2ee-worker.js HTTP/2.0" 200 6031 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 YaBrowser/25.2.0.0 Safari/537.36"

@@ -68,7 +68,7 @@ processors:
   batch:
 
 exporters:
-  logging:
+  debug:
     loglevel: debug
   loki:
     endpoint: "http://loki:3100/loki/api/v1/push"

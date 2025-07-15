@@ -328,10 +328,31 @@ authentication = "internal_hashed"
 --  Logs info and higher to /var/log
 --  Logs errors to syslog also
 log = {
-	{ levels = {min = "{{ $LOG_LEVEL }}"}, timestamps = "%Y-%m-%d %X", to = "console"};
-{{ if .Env.PROSODY_LOG_CONFIG }}
-	{{ join "\n" (splitList "\\n" .Env.PROSODY_LOG_CONFIG | compact) }}
-{{ end }}
+  -- Базовые настройки логирования
+  { 
+      levels = {min = "{{ $LOG_LEVEL }}"},  -- Минимальный уровень логирования (info, debug, warn, error)
+      timestamps = "%Y-%m-%d %X",           -- Формат временной метки
+      to = "console"                        -- Вывод в консоль
+  };
+  
+  -- Дополнительные конфигурации из переменной окружения
+  {{ if .Env.PROSODY_LOG_CONFIG }}
+      {{ join "\n" (splitList "\\n" .Env.PROSODY_LOG_CONFIG | compact) }}
+  {{ end }}
+  
+  -- Добавляем файловое логирование подключений пользователей
+  {
+      levels = {min = "info"},
+      to = "file",
+      filename = "/usr/share/jitsi-meet/transcripts/prosody_user_connections.log",  -- Путь в volume
+      timestamps = "%Y-%m-%d %X",
+      -- Фильтр только для событий подключения/отключения
+      filter = function(event)
+          return event.message:find("Authenticated as") or 
+                 event.message:find("session closed") or
+                 event.message:find("New user connected")
+      end
+  }
 }
 
 {{ if $PROSODY_ENABLE_METRICS }}
